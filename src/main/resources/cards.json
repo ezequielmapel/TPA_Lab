@@ -1,0 +1,39 @@
+[
+  {
+    "label": "Analisar Pedido",
+    "inicial": true,
+    "necessarias": [],
+    "realiza": "Analise do pedido",
+    "custo": 1
+  },
+  {
+    "label": "Analisar Cartao de credito",
+    "necessarias": ["Analise do pedido"],
+    "realiza": "Cartao analisado",
+    "custo": 2
+  },
+  {
+    "label": "Verificar inventario",
+    "necessarias": ["Cartao analisado"],
+    "realiza": "Inventario analisado",
+    "custo": 2
+  },
+  {
+    "label": "Contatar cliente",
+    "necessarias": ["Cartao analisado"],
+    "realiza": "Cliente informado",
+    "custo": 1
+  },
+  {
+    "label": "Pedir ao fornecedor",
+    "necessarias": ["Inventario analisado"],
+    "realiza": "Encomendado ao fornecedor",
+    "custo": 5
+  },
+  {
+    "label": "Enviar item",
+    "necessarias": ["Encomendado ao fornecedor", "Inventario analisado"],
+    "realiza": "Item enviado",
+    "custo": 1
+  }
+]

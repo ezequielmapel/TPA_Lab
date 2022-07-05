@@ -1,0 +1,30 @@
+[
+  {
+    "label": "T1",
+    "inicial": true,
+    "necessarias": [],
+    "realiza": "T1",
+    "custo": 1
+  },
+  {
+    "label": "T2",
+    "inicial": false,
+    "necessarias": ["T1"],
+    "realiza": "T2",
+    "custo": 1
+  },
+  {
+    "label": "T3",
+    "inicial": true,
+    "necessarias": ["T1"],
+    "realiza": "T3",
+    "custo": 1
+  },
+  {
+    "label": "T4",
+    "inicial": true,
+    "necessarias": ["T2", "T3"],
+    "realiza": "T4",
+    "custo": 1
+  }
+]
