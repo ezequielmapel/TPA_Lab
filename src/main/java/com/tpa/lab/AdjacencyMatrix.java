@@ -1,7 +1,5 @@
 package com.tpa.lab;
 
-import com.tpa.lab.domain.StateMatrix;
-
 public class AdjacencyMatrix {
     private int dimensions;
     private int[][] adjacencyMatrix;
@@ -23,7 +21,7 @@ public class AdjacencyMatrix {
 
 
     private void setInitialNode(int value) {
-        //this.setInRowAndColumn(0,1, value);
+        this.setInRowAndColumn(0,1, value);
         this.setInRowAndColumn(1,0, value);
     }
 
@@ -45,7 +43,7 @@ public class AdjacencyMatrix {
                 int value = this.stateMatrix.getInRowAndColumn(row, lastColumnWithValue);
                 if(value != 0) {
                     this.setAdjacencyByRow(row, currentRow, value);
-                    //this.setAdjacencyByColumn(row, currentRow, value);
+                    this.setAdjacencyByColumn(row, currentRow, value);
                 }
             }
         }

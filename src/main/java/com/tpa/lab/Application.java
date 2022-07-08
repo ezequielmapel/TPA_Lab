@@ -2,7 +2,6 @@ package com.tpa.lab;
 
 import com.tpa.lab.domain.Card;
 import com.tpa.lab.domain.EdgeType;
-import com.tpa.lab.domain.StateMatrix;
 import edu.uci.ics.jung.graph.UndirectedSparseMultigraph;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,35 +16,28 @@ import java.util.stream.Collectors;
 public class Application {
 
     public static void main(String[] args) throws IOException, ParseException {
-        System.out.println("Funcionando");
-
         FileReader reader = new FileReader("./src/main/resources/cards.json");
         JSONParser parser = new JSONParser();
 
         JSONArray jArray = (JSONArray) parser.parse(reader);
 
         List<Card> cards = (List<Card>) jArray.stream().map((c) -> Card.extractCard((JSONObject) c)).collect(Collectors.toList());
-        StateMatrix matrix = new StateMatrix(cards.size());
-
-        CardTransformation cardTransformation = new CardTransformation(cards, matrix);
-
-        cardTransformation.tranformToStateMatrix();
-
-        AdjacencyMatrix adjacencyMatrix = new AdjacencyMatrix(matrix, StateMatrix.ROWS);
-        adjacencyMatrix.transformToAdjacencyMatrix();
+        StateMatrix stateMatrix = new StateMatrix(cards, cards.size());
+        stateMatrix.printMatrix();
 
 
-        cardTransformation.printMatrix();
         System.out.println("##################");
 
+        AdjacencyMatrix adjacencyMatrix = new AdjacencyMatrix(stateMatrix.tranformToStateMatrix(), StateMatrix.ROWS);
+        adjacencyMatrix.transformToAdjacencyMatrix();
         adjacencyMatrix.printMatrix();
 
-        GraphJung graphicsJung = new GraphJung(StateMatrix.ROWS);
 
+        GraphJung graphicsJung = new GraphJung(StateMatrix.ROWS);
         UndirectedSparseMultigraph<String, EdgeType> adjcencyGraph = graphicsJung.createGraph(adjacencyMatrix);
 
-        Dijkstra dijkstra = new Dijkstra(adjcencyGraph);
-        dijkstra.execute("X0");
+        //Dijkstra dijkstra = new Dijkstra(adjcencyGraph);
+        //dijkstra.execute("X0");
         //graphicsJung.showGraphByMap(dijkstra.execute("X0"), "Dijkstra");
 
 
